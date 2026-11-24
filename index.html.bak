@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Undangan Pernikahan Jamohan & Romaito</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================
+           CSS VARIABLES
+        ======================================== */
+        :root {
+            --blue-dark: #0b3c5d;
+            --blue-sea: #2a9fd6;
+            --blue-sky: #cfeeff;
+            --blue-light: #eef9ff;
+            --gold: #d4af37;
+            --white: #ffffff;
+            --shadow: rgba(11, 60, 93, 0.15);
+        }
+
+        /* ========================================
+           RESET & BASE STYLES
+        ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background: linear-gradient(to bottom, var(--blue-light), var(--white), var(--blue-sky));
+            color: var(--blue-dark);
+            overflow-x: hidden;
+            position: relative;
+            max-width: 430px;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           ACCESSIBILITY
+        ======================================== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ========================================
+           GERBANG ULOS (COVER)
+        ======================================== */
+        #gerbang {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 9999;
+            display: flex;
+            transition: opacity 0.5s;
+            background: linear-gradient(to bottom, #0a2540, #0b3c5d, #1a5f8a);
+        }
+
+        #gerbang.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .gerbang-panel {
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(11, 60, 93, 0.95) 0%, rgba(42, 159, 214, 0.9) 100%);
+            position: relative;
+            overflow: hidden;
+            transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .gerbang-panel.left {
+            border-right: 1px solid rgba(212, 175, 55, 0.5);
+        }
+
+        .gerbang-panel.right {
+            border-left: 1px solid rgba(212, 175, 55, 0.5);
+        }
+
+        .gerbang-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent 0px, transparent 15px, rgba(212, 175, 55, 0.15) 15px, rgba(212, 175, 55, 0.15) 18px),
+                repeating-linear-gradient(90deg, transparent 0px, transparent 25px, rgba(212, 175, 55, 0.1) 25px, rgba(212, 175, 55, 0.1) 28px),
+                repeating-linear-gradient(45deg, transparent 0px, transparent 40px, rgba(255, 255, 255, 0.03) 40px, rgba(255, 255, 255, 0.03) 42px);
+            opacity: 1;
+        }
+
+        .gerbang-panel::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        #gerbang.open .gerbang-panel.left {
+            transform: translateX(-100%);
+        }
+
+        #gerbang.open .gerbang-panel.right {
+            transform: translateX(100%);
+        }
+
+        .gerbang-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--white);
+            width: 200%;
+            padding: 30px 20px;
+            z-index: 10;
+        }
+
+        .gerbang-ornament {
+            font-size: 60px;
+            margin-bottom: 25px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .gerbang-content h1 {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: var(--gold);
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .gerbang-content .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .gerbang-content p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            margin-bottom: 8px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .guest-name {
+            font-weight: 600;
+            font-size: 22px;
+            color: var(--gold);
+            margin: 20px 0;
+            padding: 15px 25px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .gerbang-divider {
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .gerbang-divider::before,
+        .gerbang-divider::after {
+            content: '◆';
+            position: absolute;
+            top: -8px;
+            color: var(--gold);
+            font-size: 12px;
+        }
+
+        .gerbang-divider::before {
+            left: -15px;
+        }
+
+        .gerbang-divider::after {
+            right: -15px;
+        }
+
+        #bukaBtn {
+            margin-top: 35px;
+            padding: 16px 45px;
+            background: linear-gradient(135deg, var(--gold), #f4e5a1);
+            color: var(--blue-dark);
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            font-family: 'Jost', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #bukaBtn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7);
+            background: linear-gradient(135deg, #f4e5a1, var(--gold));
+        }
+
+        #bukaBtn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        /* ========================================
+           CANVAS & PETALS
+        ======================================== */
+        #petalCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* ========================================
+           BACKGROUND ANIMATIONS
+        ======================================== */
+        .bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 100px;
+            animation: cloudMove 30s linear infinite;
+        }
+
+        @keyframes cloudMove {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(calc(100vw + 100px)); }
+        }
+
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(42,159,214,0.3));
+            border-radius: 50%;
+            animation: bubbleRise 15s linear infinite;
+        }
+
+        @keyframes bubbleRise {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: sparkleAnim 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkleAnim {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* ========================================
+           WAVE DIVIDER
+        ======================================== */
+        .wave-divider {
+            position: relative;
+            width: 100%;
+            height: 60px;
+            margin: 40px 0;
+        }
+
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%232a9fd6" opacity="0.3"/></svg>');
+            background-size: 50% 100%;
+            animation: waveMove 20s linear infinite;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ========================================
+           SECTION BASE
+        ======================================== */
+        section {
+            position: relative;
+            padding: 60px 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        section.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           HERO SECTION
+        ======================================== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            background: linear-gradient(to bottom, var(--blue-sky), var(--blue-light));
+            position: relative;
+        }
+
+        .photo-frame {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
+            border-radius: 50% 50% 0 0;
+            overflow: hidden;
+            box-shadow: 0 10px 40px var(--shadow);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 10px 40px var(--shadow); }
+            50% { box-shadow: 0 10px 60px rgba(42, 159, 214, 0.4), 0 0 30px rgba(212, 175, 55, 0.3); }
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: zoomPhoto 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes zoomPhoto {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .flower-decoration {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            height: 320px;
+            pointer-events: none;
+        }
+
+        .flower {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            animation: bloom 2s ease-out forwards, rotate 20s linear infinite;
+        }
+
+        @keyframes bloom {
+            0% { transform: scale(0) rotate(0deg); opacity: 0; }
+            100% { transform: scale(1) rotate(360deg); opacity: 1; }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-names {
+            margin: 30px 0;
+        }
+
+        .hero-names h1 {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 48px;
+            background: linear-gradient(90deg, var(--gold), #f4e5a1, var(--gold), #f4e5a1);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            margin: 10px 0;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero-names .ampersand {
+            font-size: 36px;
+            color: var(--blue-sea);
+            margin: 0 10px;
+        }
+
+        .hero-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            color: var(--blue-dark);
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        /* ========================================
+           DECORATIONS
+        ======================================== */
+        /* Corner Flowers */
+        .corner-flower {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .corner-flower.top-left { top: 20px; left: 20px; }
+        .corner-flower.top-right { top: 20px; right: 20px; }
+        .corner-flower.bottom-left { bottom: 20px; left: 20px; }
+        .corner-flower.bottom-right { bottom: 20px; right: 20px; }
+
+        /* Ulos Divider */
+        .ulos-divider {
+            width: 80%;
+            height: 4px;
+            background: repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 10px, var(--blue-dark) 10px, var(--blue-dark) 20px);
+            margin: 40px auto;
+            opacity: 0.6;
+        }
+
+        /* ========================================
+           CARD COMPONENTS
+        ======================================== */
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue-sea), var(--gold), var(--blue-sea));
+        }
+
+        .card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            color: var(--blue-dark);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            color: var(--blue-sea);
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: var(--blue-dark);
+        }
+
+        /* ========================================
+           MEMPELAI SECTION
+        ======================================== */
+        .couple-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .couple-card {
+            background: var(--white);
+            border-radius: 50% 50% 20px 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow);
+            position: relative;
+        }
+
+        .couple-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 0 0 10px 10px;
+        }
+
+        .couple-card h3 {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 36px;
+            color: var(--blue-dark);
+            margin: 15px 0 5px;
+        }
+
+        .couple-card .subtitle {
+            font-size: 14px;
+            color: var(--blue-sea);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .couple-card p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           COUNTDOWN SECTION
+        ======================================== */
+        .countdown-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .countdown-box {
+            background: linear-gradient(135deg, var(--blue-sea), var(--blue-dark));
+            color: var(--white);
+            padding: 20px 10px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .countdown-box .number {
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            display: block;
+        }
+
+        .countdown-box .label {
+            font-size: 12px;
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        /* ========================================
+           EVENT SECTION
+        ======================================== */
+        .event-card {
+            background: linear-gradient(135deg, var(--blue-light), var(--white));
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid var(--gold);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .event-card h3 {
+            color: var(--blue-dark);
+            margin-bottom: 15px;
+        }
+
+        .event-detail {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 15px;
+        }
+
+        .event-detail::before {
+            content: '◆';
+            color: var(--gold);
+            margin-right: 10px;
+            font-size: 12px;
+        }
+
+        /* ========================================
+           BUTTONS
+        ======================================== */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--blue-sea);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            box-shadow: 0 4px 15px rgba(42, 159, 214, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(42, 159, 214, 0.5);
+            background: var(--blue-dark);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--blue-dark);
+        }
+
+        .btn-gold:hover {
+            background: #c49b2a;
+        }
+
+        /* ========================================
+           GALLERY SECTION
+        ======================================== */
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+
+        .gallery-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .gallery-slide.active {
+            opacity: 1;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--white);
+        }
+
+        .dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+
+        /* ========================================
+           TAMAN DOA SECTION
+        ======================================== */
+        .doa-form {
+            margin: 30px 0;
+        }
+
+        .doa-form input,
+        .doa-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid var(--blue-sky);
+            border-radius: 10px;
+            font-family: 'Jost', sans-serif;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .doa-form input:focus,
+        .doa-form textarea:focus {
+            outline: none;
+            border-color: var(--blue-sea);
+        }
+
+        .doa-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .taman-container {
+            position: relative;
+            min-height: 300px;
+            background: linear-gradient(to bottom, var(--blue-sky), var(--blue-light));
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+
+        .doa-flower {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.3s;
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .doa-flower:hover {
+            transform: scale(1.2) !important;
+        }
+
+        .doa-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            z-index: 10000;
+            max-width: 90%;
+            transition: transform 0.3s;
+        }
+
+        .doa-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .doa-popup h4 {
+            color: var(--blue-dark);
+            margin-bottom: 15px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+        }
+
+        .doa-popup p {
+            color: var(--blue-dark);
+            line-height: 1.6;
+        }
+
+        .doa-popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--blue-sea);
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        /* ========================================
+           MUSIC BUTTON
+        ======================================== */
+        #musicToggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: none;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+            cursor: pointer;
+            z-index: 9000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        #musicToggle:hover {
+            transform: scale(1.15);
+        }
+
+        #musicToggle.playing {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        footer {
+            background: var(--blue-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 10px 0;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-style: italic;
+            margin: 20px 0;
+            color: var(--gold);
+        }
+
+        /* ========================================
+           UTILITIES & OVERLAYS
+        ======================================== */
+        /* Overlay untuk popup */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+            display: none;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* Success message */
+        .success-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: var(--gold);
+            color: var(--blue-dark);
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+            z-index: 10001;
+            transition: transform 0.5s;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ========================================
+           RESPONSIVE STYLES
+        ======================================== */
+        @media (max-width: 360px) {
+            .hero-names h1 { font-size: 40px; }
+            .couple-card h3 { font-size: 30px; }
+            .countdown-box .number { font-size: 28px; }
+            .photo-frame { width: 240px; height: 240px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========================================
+         CANVAS PETALS
+    ======================================== -->
+    <canvas id="petalCanvas"></canvas>
+
+    <!-- ========================================
+         GERBANG ULOS (COVER PAGE)
+    ======================================== -->
+    <div id="gerbang">
+        <div class="gerbang-panel left">
+            <div class="gerbang-content">
+                <div class="gerbang-ornament">✦</div>
+                <p class="subtitle">The Wedding Of</p>
+                <h1>Jamohan & Romaito</h1>
+                <div class="gerbang-divider"></div>
+                <p style="font-size: 15px; margin: 15px 0 5px;">Kepada Yth.</p>
+                <p style="font-size: 15px; margin-bottom: 5px;">Bapak/Ibu/Saudara/i</p>
+                <div class="guest-name" id="guestName">Tamu Undangan</div>
+                <div class="gerbang-divider"></div>
+                <p style="font-size: 14px; margin-top: 15px; opacity: 0.8;">Tanpa mengurangi rasa hormat,</p>
+                <p style="font-size: 14px; opacity: 0.8;">kami mengundang Anda untuk hadir di acara pernikahan kami</p>
+                <p style="font-size: 13px; margin-top: 15px; opacity: 0.7; font-style: italic;">Sabtu, 15 Agustus 2026</p>
+                <button id="bukaBtn">Buka Undangan</button>
+            </div>
+        </div>
+        <div class="gerbang-panel right"></div>
+    </div>
+
+    <!-- ========================================
+         MAIN CONTENT
+    ======================================== -->
+    <main style="display: none;" id="mainContent">
+        
+        <!-- ========================================
+             HERO SECTION
+        ======================================== -->
+        <section id="hero">
+            <div class="bg-animation" id="bgHero"></div>
+            
+            <div class="photo-frame">
+                <img src="foto1.jpeg" alt="Jamohan & Romaito" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22280%22%3E%3Crect fill=%22%23cfeeff%22 width=%22280%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%230b3c5d%22%3EJamohan %26 Romaito%3C/text%3E%3C/svg%3E'">
+                <div class="flower-decoration" id="flowerDecoration"></div>
+            </div>
+
+            <div class="hero-names">
+                <h1>Jamohan Sihombing</h1>
+                <div class="ampersand">&</div>
+                <h1>Romaito Sitanggang</h1>
+            </div>
+
+            <p class="hero-date">Sabtu, 15 Agustus 2026</p>
+        </section>
+
+        <!-- ========================================
+             WAVE DIVIDER
+        ======================================== -->
+        <div class="wave-divider">
+            <div class="wave"></div>
+        </div>
+
+        <!-- ========================================
+             MEMPELAI SECTION
+        ======================================== -->
+        <section id="mempelai">
+            <svg class="corner-flower top-left" viewBox="0 0 100 100"><circle cx="50" cy="50" r="15" fill="#d4af37"/><circle cx="30" cy="40" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="70" cy="40" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="40" cy="65" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="60" cy="65" r="12" fill="#2a9fd6" opacity="0.6"/></svg>
+
+            <div class="card">
+                <h2>Mempelai</h2>
+                <div class="ulos-divider"></div>
+                
+                <div class="couple-container">
+                    <div class="couple-card">
+                        <h3>Jamohan Sihombing</h3>
+                        <p class="subtitle">Mempelai Pria</p>
+                        <p>Putra dari</p>
+                        <p><strong>Bapak [Nama Ayah] & Ibu [Nama Ibu]</strong></p>
+                    </div>
+
+                    <div class="couple-card">
+                        <h3>Romaito Sitanggang</h3>
+                        <p class="subtitle">Mempelai Wanita</p>
+                        <p>Putri dari</p>
+                        <p><strong>Bapak [Nama Ayah] & Ibu [Nama Ibu]</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <svg class="corner-flower bottom-right" viewBox="0 0 100 100"><circle cx="50" cy="50" r="15" fill="#d4af37"/><circle cx="30" cy="40" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="70" cy="40" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="40" cy="65" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="60" cy="65" r="12" fill="#2a9fd6" opacity="0.6"/></svg>
+        </section>
+
+        <!-- ========================================
+             WAVE DIVIDER
+        ======================================== -->
+        <div class="wave-divider">
+            <div class="wave"></div>
+        </div>
+
+        <!-- ========================================
+             SAVE THE DATE SECTION
+        ======================================== -->
+        <section id="savethedate">
+            <div class="card">
+                <h2>Save The Date</h2>
+                <div class="ulos-divider"></div>
+                
+                <div id="countdown" class="countdown-container">
+                    <div class="countdown-box">
+                        <span class="number" id="days">00</span>
+                        <span class="label">Hari</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="number" id="hours">00</span>
+                        <span class="label">Jam</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="number" id="minutes">00</span>
+                        <span class="label">Menit</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="number" id="seconds">00</span>
+                        <span class="label">Detik</span>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-gold" id="saveCalendar">📅 Simpan ke Kalender</button>
+                    <button class="btn" id="rsvpBtn">💌 Konfirmasi Kehadiran</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             WAVE DIVIDER
+        ======================================== -->
+        <div class="wave-divider">
+            <div class="wave"></div>
+        </div>
+
+        <!-- ========================================
+             ACARA SECTION
+        ======================================== -->
+        <section id="acara">
+            <svg class="corner-flower top-right" viewBox="0 0 100 100"><circle cx="50" cy="50" r="15" fill="#d4af37"/><circle cx="30" cy="40" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="70" cy="40" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="40" cy="65" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="60" cy="65" r="12" fill="#2a9fd6" opacity="0.6"/></svg>
+
+            <div class="card">
+                <h2>Rangkaian Acara</h2>
+                <div class="ulos-divider"></div>
+
+                <div class="event-card">
+                    <h3>Pemberkatan</h3>
+                    <div class="event-detail">Sabtu, 15 Agustus 2026</div>
+                    <div class="event-detail">Pukul 09.00 WIB - Selesai</div>
+                    <div class="event-detail">Gedung Sopo Godang</div>
+                </div>
+
+                <div class="event-card">
+                    <h3>Pesta Unjuk & Resepsi</h3>
+                    <div class="event-detail">Sabtu, 15 Agustus 2026</div>
+                    <div class="event-detail">Pukul 12.00 WIB - Selesai</div>
+                    <div class="event-detail">Gedung Sopo Godang</div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="https://maps.google.com/?q=Gedung+Sopo+Godang" target="_blank" class="btn">📍 Buka Peta Lokasi</a>
+                </div>
+            </div>
+
+            <svg class="corner-flower bottom-left" viewBox="0 0 100 100"><circle cx="50" cy="50" r="15" fill="#d4af37"/><circle cx="30" cy="40" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="70" cy="40" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="40" cy="65" r="12" fill="#2a9fd6" opacity="0.6"/><circle cx="60" cy="65" r="12" fill="#2a9fd6" opacity="0.6"/></svg>
+        </section>
+
+        <!-- ========================================
+             WAVE DIVIDER
+        ======================================== -->
+        <div class="wave-divider">
+            <div class="wave"></div>
+        </div>
+
+        <!-- ========================================
+             GALERI SECTION
+        ======================================== -->
+        <section id="galeri">
+            <div class="card">
+                <h2>Galeri</h2>
+                <div class="ulos-divider"></div>
+
+                <div class="gallery-container" id="gallery">
+                    <div class="gallery-slide active">
+                        <img src="foto2.jpeg" alt="Gallery 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23cfeeff%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%230b3c5d%22%3EFoto 1%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="foto3.jpeg" alt="Gallery 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23cfeeff%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%230b3c5d%22%3EFoto 2%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="foto4.png" alt="Gallery 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23cfeeff%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%230b3c5d%22%3EFoto 3%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="gallery-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             WAVE DIVIDER
+        ======================================== -->
+        <div class="wave-divider">
+            <div class="wave"></div>
+        </div>
+
+        <!-- ========================================
+             TAMAN DOA SECTION
+        ======================================== -->
+        <section id="tamandoa">
+            <div class="card">
+                <h2>Taman Doa</h2>
+                <div class="ulos-divider"></div>
+                <p style="text-align: center; margin-bottom: 20px;">Berikan doa dan ucapan terbaik untuk kami. Setiap doa akan tumbuh menjadi bunga di taman kami.</p>
+
+                <div class="doa-form">
+                    <input type="text" id="doaName" placeholder="Nama Anda" maxlength="50">
+                    <textarea id="doaMessage" placeholder="Tulis doa dan ucapan Anda..." maxlength="300"></textarea>
+                    <button class="btn btn-gold" id="submitDoa" style="width: 100%;">🌸 Kirim Doa</button>
+                </div>
+
+                <div class="taman-container" id="tamanContainer">
+                    <p style="text-align: center; color: var(--blue-dark); position: relative; z-index: 1;">Taman doa akan berisi bunga dari setiap ucapan yang diberikan</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             WAVE DIVIDER
+        ======================================== -->
+        <div class="wave-divider">
+            <div class="wave"></div>
+        </div>
+
+        <!-- ========================================
+             PENUTUP SECTION
+        ======================================== -->
+        <section id="penutup">
+            <div class="card">
+                <h2>Penutup</h2>
+                <div class="ulos-divider"></div>
+                <p class="quote">
+                    "Hasangapon, Hamoraon, Hagabeon"
+                </p>
+                <p style="text-align: center; line-height: 1.8; margin-top: 20px;">
+                    Merupakan kebahagiaan dan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i
+                    berkenan hadir untuk memberikan doa restu kepada kami.
+                </p>
+                <p style="text-align: center; margin-top: 30px; font-weight: 600;">
+                    Atas kehadiran dan doa restu,<br>
+                    kami ucapkan terima kasih.
+                </p>
+                <div style="text-align: center; margin-top: 30px;">
+                    <p style="font-family: 'Pinyon Script', cursive; font-size: 32px; color: var(--gold);">
+                        Jamohan & Romaito
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             FOOTER
+        ======================================== -->
+        <footer>
+            <p class="quote">"Molo naung di roha, dapot di hepeng"</p>
+            <p style="font-size: 14px; margin-top: 20px;">
+                Jika ada yang ingin dikonsultasikan, bisa mencari kemana saja
+            </p>
+            <div class="ulos-divider" style="background: repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 10px, var(--white) 10px, var(--white) 20px);"></div>
+            <p style="font-size: 13px; opacity: 0.7; margin-top: 20px;">
+                Made with ❤️ for Jamohan & Romaito
+            </p>
+        </footer>
+    </main>
+
+    <!-- ========================================
+         FLOATING MUSIC BUTTON
+    ======================================== -->
+    <button id="musicToggle" style="display: none;">🎵</button>
+
+    <!-- ========================================
+         AUDIO ELEMENT
+    ======================================== -->
+    <audio id="bgMusic" loop>
+        <source src="Dongan matua.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ========================================
+         POPUP ELEMENTS
+    ======================================== -->
+    <div class="overlay" id="overlay"></div>
+    <div class="doa-popup" id="doaPopup">
+        <button class="close-btn" id="closePopup">×</button>
+        <h4 id="popupName"></h4>
+        <p id="popupMessage"></p>
+    </div>
+
+    <!-- ========================================
+         SUCCESS MESSAGE
+    ======================================== -->
+    <div class="success-message" id="successMessage">Doa berhasil dikirim! 🌸</div>
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+    <script>
+        // ========================================
+        // CONSTANTS & CONFIGURATION
+        // ========================================
+        const WHATSAPP_NUMBER = '6281234567890'; // Ganti dengan nomor WhatsApp yang benar
+        const WEDDING_DATE = new Date('2026-08-15T09:00:00');
+
+        // ========================================
+        // GUEST NAME FROM URL
+        // ========================================
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestName = urlParams.get('to') || 'Tamu Undangan';
+        document.getElementById('guestName').textContent = guestName;
+
+        // ========================================
+        // CANVAS PETALS ANIMATION
+        // ========================================
+        const canvas = document.getElementById('petalCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let petals = [];
+
+        class Petal {
+            constructor(x, y, burst = false) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 8 + 4;
+                this.speedY = burst ? -(Math.random() * 5 + 3) : Math.random() * 2 + 1;
+                this.speedX = burst ? (Math.random() - 0.5) * 8 : (Math.random() - 0.5) * 2;
+                this.opacity = 1;
+                this.color = Math.random() > 0.5 ? '#2a9fd6' : '#ffffff';
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 5;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+                if (this.speedY < 3) this.speedY += 0.05; // Gravity
+                if (this.y > canvas.height) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size, this.size * 1.5, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Initial petals
+        for (let i = 0; i < 30; i++) {
+            petals.push(new Petal(Math.random() * canvas.width, Math.random() * canvas.height));
+        }
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach((petal, index) => {
+                petal.update();
+                petal.draw();
+                if (petal.opacity <= 0) {
+                    petals.splice(index, 1);
+                }
+            });
+            requestAnimationFrame(animatePetals);
+        }
+
+        animatePetals();
+
+        // Touch/Click untuk semburan kelopak
+        canvas.addEventListener('click', (e) => {
+            for (let i = 0; i < 15; i++) {
+                petals.push(new Petal(e.clientX, e.clientY, true));
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // ========================================
+        // OPEN GERBANG & MUSIC
+        // ========================================
+        const bgMusic = document.getElementById('bgMusic');
+        const gerbang = document.getElementById('gerbang');
+        const mainContent = document.getElementById('mainContent');
+        const musicToggle = document.getElementById('musicToggle');
+
+        document.getElementById('bukaBtn').addEventListener('click', () => {
+            gerbang.classList.add('open');
+            
+            // Semburan kelopak
+            for (let i = 0; i < 50; i++) {
+                petals.push(new Petal(canvas.width / 2, canvas.height / 2, true));
+            }
+
+            // Play music
+            bgMusic.play().catch(e => console.log('Audio autoplay prevented'));
+
+            setTimeout(() => {
+                gerbang.classList.add('hidden');
+                mainContent.style.display = 'block';
+                musicToggle.style.display = 'flex';
+                setTimeout(() => {
+                    document.querySelectorAll('section').forEach(section => {
+                        section.classList.add('reveal');
+                    });
+                }, 100);
+            }, 1200);
+        });
+
+        // ========================================
+        // MUSIC TOGGLE
+        // ========================================
+        let isPlaying = false;
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicToggle.classList.remove('playing');
+                musicToggle.textContent = '🎵';
+            } else {
+                bgMusic.play();
+                musicToggle.classList.add('playing');
+                musicToggle.textContent = '🎶';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        bgMusic.addEventListener('play', () => {
+            isPlaying = true;
+            musicToggle.classList.add('playing');
+            musicToggle.textContent = '🎶';
+        });
+
+        // ========================================
+        // BACKGROUND ANIMATIONS
+        // ========================================
+        const bgHero = document.getElementById('bgHero');
+        
+        // Clouds
+        for (let i = 0; i < 3; i++) {
+            const cloud = document.createElement('div');
+            cloud.className = 'cloud';
+            cloud.style.width = `${Math.random() * 80 + 60}px`;
+            cloud.style.height = `${Math.random() * 30 + 20}px`;
+            cloud.style.top = `${Math.random() * 50}%`;
+            cloud.style.animationDelay = `${i * 10}s`;
+            bgHero.appendChild(cloud);
+        }
+
+        // Bubbles
+        for (let i = 0; i < 8; i++) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.width = `${Math.random() * 40 + 20}px`;
+            bubble.style.height = bubble.style.width;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.animationDelay = `${i * 2}s`;
+            bgHero.appendChild(bubble);
+        }
+
+        // Sparkles
+        for (let i = 0; i < 15; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = `${Math.random() * 100}%`;
+            sparkle.style.top = `${Math.random() * 100}%`;
+            sparkle.style.animationDelay = `${Math.random() * 3}s`;
+            bgHero.appendChild(sparkle);
+        }
+
+        // ========================================
+        // FLOWER DECORATIONS
+        // ========================================
+        const flowerDecoration = document.getElementById('flowerDecoration');
+        const flowerCount = 12;
+        for (let i = 0; i < flowerCount; i++) {
+            const angle = (360 / flowerCount) * i;
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.innerHTML = createFlowerSVG();
+            const radius = 140;
+            const x = Math.cos((angle * Math.PI) / 180) * radius + 140;
+            const y = Math.sin((angle * Math.PI) / 180) * radius + 140;
+            flower.style.left = `${x}px`;
+            flower.style.top = `${y}px`;
+            flower.style.animationDelay = `${i * 0.1}s`;
+            flowerDecoration.appendChild(flower);
+        }
+
+        function createFlowerSVG() {
+            return `<svg viewBox="0 0 40 40" width="40" height="40">
+                <circle cx="20" cy="20" r="5" fill="#d4af37"/>
+                <circle cx="12" cy="15" r="6" fill="#2a9fd6" opacity="0.7"/>
+                <circle cx="28" cy="15" r="6" fill="#2a9fd6" opacity="0.7"/>
+                <circle cx="15" cy="26" r="6" fill="#2a9fd6" opacity="0.7"/>
+                <circle cx="25" cy="26" r="6" fill="#2a9fd6" opacity="0.7"/>
+                <circle cx="12" cy="25" r="6" fill="#ffffff" opacity="0.6"/>
+                <circle cx="28" cy="25" r="6" fill="#ffffff" opacity="0.6"/>
+                <circle cx="20" cy="12" r="6" fill="#ffffff" opacity="0.6"/>
+                <circle cx="20" cy="28" r="6" fill="#ffffff" opacity="0.6"/>
+            </svg>`;
+        }
+
+        // ========================================
+        // SCROLL REVEAL
+        // ========================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // ========================================
+        // COUNTDOWN TIMER
+        // ========================================
+        function updateCountdown() {
+            const now = new Date();
+            const diff = WEDDING_DATE - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 20px; color: var(--blue-dark);">
+                        <p style="font-size: 20px; font-weight: 600;">Terima kasih telah menjadi bagian dari hari bahagia kami! ❤️</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ========================================
+        // SAVE TO CALENDAR
+        // ========================================
+        document.getElementById('saveCalendar').addEventListener('click', () => {
+            const event = {
+                title: 'Pernikahan Jamohan & Romaito',
+                description: 'Pemberkatan pukul 09.00 WIB dan Pesta Unjuk & Resepsi pukul 12.00 WIB',
+                location: 'Gedung Sopo Godang',
+                start: '20260815T090000',
+                end: '20260815T170000'
+            };
+
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Undangan Pernikahan//ID
+BEGIN:VEVENT
+UID:${Date.now()}@undangan-jamohan-romaito.com
+DTSTAMP:${event.start}
+DTSTART:${event.start}
+DTEND:${event.end}
+SUMMARY:${event.title}
+DESCRIPTION:${event.description}
+LOCATION:${event.location}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsContent], { type: 'text/calendar' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'pernikahan-jamohan-romaito.ics';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // ========================================
+        // RSVP VIA WHATSAPP
+        // ========================================
+        document.getElementById('rsvpBtn').addEventListener('click', () => {
+            const message = `Halo, saya ${guestName} ingin mengkonfirmasi kehadiran saya di pernikahan Jamohan & Romaito pada Sabtu, 15 Agustus 2026.`;
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        });
+
+        // ========================================
+        // GALLERY SLIDESHOW
+        // ========================================
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.gallery-slide');
+        const dots = document.querySelectorAll('.dot');
+        let slideInterval;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        });
+
+        slideInterval = setInterval(nextSlide, 5000);
+
+        // ========================================
+        // GALLERY SWIPE GESTURE
+        // ========================================
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById('gallery').addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById('gallery').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                nextSlide();
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            } else if (touchEndX - touchStartX > 50) {
+                showSlide(currentSlide - 1);
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+        });
+
+        // ========================================
+        // TAMAN DOA (PRAYER GARDEN)
+        // ========================================
+        const doaData = [];
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function createDoaFlower(name, message, index) {
+            const flower = document.createElement('div');
+            flower.className = 'doa-flower';
+            flower.innerHTML = createFlowerSVG();
+            
+            const container = document.getElementById('tamanContainer');
+            const maxWidth = container.offsetWidth - 50;
+            const maxHeight = container.offsetHeight - 50;
+            
+            flower.style.left = `${(index * 60) % maxWidth}px`;
+            flower.style.top = `${50 + (Math.floor(index / 5) * 70) % maxHeight}px`;
+            flower.style.animationDelay = `${(index % 5) * 0.3}s`;
+            
+            flower.addEventListener('click', () => {
+                document.getElementById('popupName').textContent = name;
+                document.getElementById('popupMessage').textContent = message;
+                document.getElementById('overlay').classList.add('show');
+                document.getElementById('doaPopup').classList.add('show');
+            });
+            
+            return flower;
+        }
+
+        document.getElementById('submitDoa').addEventListener('click', () => {
+            const name = document.getElementById('doaName').value.trim();
+            const message = document.getElementById('doaMessage').value.trim();
+            
+            if (!name || !message) {
+                alert('Mohon isi nama dan ucapan Anda');
+                return;
+            }
+
+            const safeName = escapeHtml(name);
+            const safeMessage = escapeHtml(message);
+            
+            doaData.push({ name: safeName, message: safeMessage });
+            
+            const flower = createDoaFlower(safeName, safeMessage, doaData.length - 1);
+            document.getElementById('tamanContainer').appendChild(flower);
+            
+            document.getElementById('doaName').value = '';
+            document.getElementById('doaMessage').value = '';
+            
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 3000);
+        });
+
+        document.getElementById('closePopup').addEventListener('click', () => {
+            document.getElementById('overlay').classList.remove('show');
+            document.getElementById('doaPopup').classList.remove('show');
+        });
+
+        document.getElementById('overlay').addEventListener('click', () => {
+            document.getElementById('overlay').classList.remove('show');
+            document.getElementById('doaPopup').classList.remove('show');
+        });
+    </script>
+</body>
+</html>
